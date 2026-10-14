@@ -7,8 +7,9 @@
 / {
 	#address-cells = <1>;
 	#size-cells = <1>;
-	model = "ZHAO 7981r128";
-	compatible = "mediatek,mt7981", "mediatek,mt7981-rfb";
+	model = "7981R128";
+	compatible = "mediatek,mt7981", "mediatek,mt7981-rfb",
+		     "mediatek,mt7981-spim-snand-7981r128";
 
 	chosen {
 		stdout-path = &uart0;
@@ -17,15 +18,15 @@
 
 	config {
 		bootcmd = "mtkboardboot";
-		blink_led = "green:power";
-		system_led = "green:power";
+		blink_led = "power:system";
+		system_led = "power:system";
 	};
 
 	mtd-layout {
 		layout@0 {
 			label = "default";
 			mtdids = "nmbm0=nmbm0";
-			mtdparts = "nmbm0:1024k(bl2),512k(u-boot-env),2048k(Factory),2048k(fip),114688k(ubi)";
+			mtdparts = "nmbm0:1024k(bl2),512k(u-boot-env),2048k(factory),2048k(fip),114M(ubi)";
 		};
 	};
 
@@ -63,7 +64,7 @@
 		};
 
 		led-power {
-			label = "green:power";
+			label = "power:system";
 			gpios = <&pio 13 GPIO_ACTIVE_LOW>;
 			default-state = "on";
 		};
@@ -86,12 +87,12 @@
 &eth {
 	status = "okay";
 	mediatek,gmac-id = <0>;
-	phy-mode = "2500base-x";
-	mediatek,switch = "auto";
+	phy-mode = "sgmii";
+	mediatek,switch = "mt7531";
 	reset-gpios = <&pio 39 GPIO_ACTIVE_HIGH>;
 
 	fixed-link {
-		speed = <2500>;
+		speed = <1000>;
 		full-duplex;
 	};
 };

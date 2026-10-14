@@ -8,7 +8,7 @@ Accepted
 
 The ImmortalWrt reference device tree for `zhao,7981r128` uses an MTK U-Boot layout on SPI-NAND with `mediatek,nmbm` enabled. Its partition contract is:
 
-`nmbm0:1024k(bl2),512k(u-boot-env),2048k(Factory),2048k(fip),114688k(ubi)`
+`nmbm0:1024k(bl2),512k(u-boot-env),2048k(factory),2048k(fip),114M(ubi)`
 
 The Linux device tree also exposes an SFP WAN path, but existing MT7981 U-Boot board device trees in this repository do not provide a matching SFP recovery-network pattern.
 
